@@ -22,6 +22,7 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "CaskaydiaCove Nerd Font Mono" :size 26))
+(setq doom-variable-pitch-font (font-spec :family "Noto Serif" :size 16))
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -40,9 +41,37 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/nexus/")
 (setq org-roam-directory (file-truename "~/nexus"))
 (org-roam-db-autosync-mode)
+
+(dolist (mode '(org-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 70
+        visual-fill-column-center-text t
+        org-adapt-indentation nil
+        org-indent-mode nil)
+  (mixed-pitch-mode)
+  (visual-fill-column-mode 1))
+
+;;(use-package-hook! evil
+;;  :pre-init
+;;  (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+;;  t)
+
+(setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+
+(use-package! visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
+
+(use-package! org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("⏣" "●" "○" "◐" "◑" "◓" "◒")))
+
 
 (setq! citar-bibliography '("~/nexus/library.bib"))
 (setq! citar-library-paths '("~/Dropbox/Library/")
@@ -52,14 +81,27 @@
 
 (add-to-list 'default-frame-alist '(alpha-background . 75))
 
+;; new commnet here
 (setq citar-file-open-functions
       (list
        (cons "pdf" #'citar-file-open-external)
        (cons "html" #'citar-file-open-external)
        (cons t #'find-file)))
 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((c . t)))
+(use-package pdf-view
+  :hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
+  :hook (pdf-tools-enabled . hide-mode-line-mode)
+  :config
+  (setq pdf-view-midnight-colors '("#ffeeee" . "#000011")))
+
 (map! :leader
       :desc "Insert Citation" "n c" #'citar-insert-citation)
+
+
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.

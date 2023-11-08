@@ -9,6 +9,10 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 
+(package! visual-fill-column)
+(package! mixed-pitch)
+(package! org-bullets)
+
 (package! org-roam-bibtex
   :recipe (:host github :repo "org-roam/org-roam-bibtex"))
 
