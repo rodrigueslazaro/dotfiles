@@ -39,8 +39,7 @@
 
 ;; USE VISUAL LINE MODE
 
-(use-package-hook! evil
-  :pre-init (setq evil-respect-visual-line-mode t)
+(setq evil-respect-visual-line-mode t)
 
 ;; CUSTOM ORG BULLETS
 
@@ -75,6 +74,9 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((c . t)))
+
+(after! flyspell
+  (setq flyspell-lazy-idle-seconds 2))
 
 ;; CUSTOM KEYBINDINGS
 (map! :leader
