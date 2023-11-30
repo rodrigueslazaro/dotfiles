@@ -10,7 +10,7 @@
 ;(package! some-package)
 
 (package! visual-fill-column)
-(package! mixed-pitch)
+;(package! mixed-pitch)
 (package! org-bullets)
 
 (package! org-roam-bibtex

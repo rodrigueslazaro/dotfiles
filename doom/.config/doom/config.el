@@ -27,11 +27,11 @@
 ;; CENTER SCREEN IN ORG MODE
 
 (defun efs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 70
+  (setq visual-fill-column-width 80
         visual-fill-column-center-text t
         org-adapt-indentation nil
         org-indent-mode nil)
-  (mixed-pitch-mode)
+ ;; (mixed-pitch-mode)
   (visual-fill-column-mode 1))
 
 (use-package! visual-fill-column
