@@ -23,6 +23,7 @@ vim.cmd [[
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'tjdevries/colorbuddy.vim'
   Plug 'jordanbrauer/citylights.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   call plug#end()
 ]]
 
@@ -51,4 +52,4 @@ vim.cmd('autocmd BufRead,BufNewFile *.wiki :Goyo 80')
 vim.api.nvim_set_keymap('n', '<F6>', ':setlocal spell! spelllang=en_us<CR>', {noremap = true})
 
 -- Rquire City Lights theme
-require('colorbuddy').colorscheme('citylights')
+-- require('colorbuddy').colorscheme('citylights')
