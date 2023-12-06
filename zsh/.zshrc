@@ -10,6 +10,10 @@ zstyle :compinstall filename '/home/lazaro/.zshrc'
 autoload -Uz compinit
 compinit
 
+# PATH
+
+PATH=$PATH:~/.scripts
+
 # ALIASES
 
 alias vi="nvim"
@@ -19,3 +23,5 @@ alias ls="exa --icons -T -L=1"
 
 # STARSHIP
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
